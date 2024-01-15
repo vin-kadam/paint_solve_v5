@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1 class="text-center text-blue fw-bold">Add Product</h1>
+    <form method="post" class="row g-3">
+        {% csrf_token %}
+        <div class="col-md-12">
+            <div class="mb-3">
+                <label for="id_color_name" class="form-label text-white fs-6">Color Name:</label>
+                {{ form.color_name }}
+            </div>
+            <div class="mb-3">
+                <label for="id_category" class="form-label text-white fs-6">Category:</label>
+                {{ form.category }}
+            </div>
+            <div class="mb-3">
+                <label for="id_brand" class="form-label text-white fs-6">Brand:</label>
+                {{ form.brand }}
+            </div>
+            <div class="mb-3">
+                <label for="id_color_code" class="form-label text-white fs-6">Color Code:</label>
+                {{ form.color_code }}
+            </div>
+            <div class="col-12">
+              
+                <button type="submit" class="btn btn-light">Add</button>
+            
+            </div>
+        </div>
+    </form>
+{% endblock %}

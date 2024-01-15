@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    
+    
+   
+    <h1 class="text-center text-blue fw-bold">Purchase Stock</h1>
+
+    
+    <form method="post" class="row g-2">
+        {% csrf_token %}
+        <div class="col-md-12">
+            <div class="mb-3">
+                <label for="id_product" class="col-form-label fs-5 text-white">Product:</label>
+                {{ form.product }}
+            </div>
+            <div class="mb-3">
+                <label for="id_supplier" class="col-form-label fs-5 text-white">Supplier:</label>
+                {{ form.supplier }}
+            </div>
+            <div class="mb-3">
+                <label for="id_quantity" class="col-form-label fs-5 text-white">Quantity:</label>
+                {{ form.quantity }}
+            </div>
+            <div class="mb-3">
+                <label for="id_price" class="col-form-label fs-5 text-white">Price:</label>
+                {{ form.price }}
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-light">Order</button>
+            </div>
+        </div>
+    </form>
+    
+{% endblock %}

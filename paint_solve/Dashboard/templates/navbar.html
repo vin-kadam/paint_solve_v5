@@ -1,0 +1,26 @@
+{%load static%}
+
+{% block content%}
+<nav>
+        
+    <form action="#">
+        <div class="form-input">
+        </div>
+    </form>
+    <a href="{% url 'logout'%}" class="link">
+        <i class='bx bx-log-out-circle' style='color:#ff0000'></i>
+        <span class="name" style='color:#ff0000'>Log Out</span>
+    </a>
+       
+   
+    <div class="submenu">
+        <a href="#" class="link submenu-title">Dashboard</a></div>
+    <div class="submenu">
+        <a href="#" class="link submenu-title">Dashboard</a></div>
+    
+   
+    <a href="#" class="profile">
+        <img src="images/logo.png">
+    </a>
+</nav>
+{% endblock content%}

@@ -1,0 +1,276 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- In the head section -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+<body>
+<!-- Sidebar -->
+<div class="flex-shrink-0 p-3 bg-white sidebar shadow">
+    <div class="logo" >
+     <img src="{% static 'images/logo.svg'%}" alt="Paint Solve Logo">
+    </div>
+  
+   
+        <ul class="list-unstyled ps-0">
+  
+          <li class="mb-1">
+            <a href="{% url 'home'%}" class="text-decoration-none">
+              <button class="btn btn-toggle align-items-center rounded home-btn" >
+                <div class="d-flex justify-content-center align-items-center">
+                  <i class="fas fa-home me-2"></i>
+                  <span>Home</span>
+                </div>
+              </button>
+            </a>
+            <!-- Add collapse content if needed -->
+          </li>
+        
+            <li class="mb-1">
+              <button class="btn btn-toggle align-items-center rounded collapsed large" data-bs-toggle="collapse" data-bs-target="#product-collapse" aria-expanded="false">
+                <i class="fas fa-box me-2"></i> Product <i class="fas fa-caret-down"></i>
+              </button>
+              <div class="collapse" id="product-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><a href="{% url 'add_product'%}" class="link-dark rounded "><i class="fas fa-plus me-2"></i> Add Product</a></li>
+                  <li><a href="{% url 'view_product'%}" class="link-dark rounded"><i class="fas fa-eye me-2"></i> View Product</a></li>
+                 
+                </ul>
+              </div>
+            </li>
+        
+            <li class="mb-1">
+              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#supplier-collapse" aria-expanded="false">
+                <i class="fas fa-truck me-2"></i> Supplier <i class="fas fa-caret-down"></i>
+              </button>
+              <div class="collapse" id="supplier-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><a href="{% url 'add_supplier'%}" class="link-dark rounded"><i class="fas fa-plus me-2"></i> Add Supplier</a></li>
+                  <li><a href="{% url 'view_supplier'%}" class="link-dark rounded"><i class="fas fa-eye me-2"></i> View Supplier</a></li>
+                </ul>
+              </div>
+            </li>
+        
+            
+        
+            <li class="mb-1">
+              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#category-collapse" aria-expanded="false">
+                <i class="fas fas fa-cubes me-2"></i> Stock <i class="fas fa-caret-down"></i>
+              </button>
+              <div class="collapse" id="category-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><a href="{% url 'add_Stock'%}" class="link-dark rounded"><i class="fas fa-plus me-2"></i> Add Stock</a></li>
+                  <li><a href="{% url 'view_stock'%}" class="link-dark rounded"><i class="fas fa-eye me-2"></i> View Stock</a></li>
+                  
+                </ul>
+              </div>
+            </li>
+        
+            <li class="mb-1">
+              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#brand-collapse" aria-expanded="false">
+                <i class="fas fa-bullseye me-2"></i> Brand <i class="fas fa-caret-down"></i>
+              </button>
+              <div class="collapse" id="brand-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><a href="{% url 'add_brand'%}" class="link-dark rounded"><i class="fas fa-plus me-2"></i> Add Brand</a></li>
+                  <li><a href="{% url 'view_brand'%}" class="link-dark rounded"><i class="fas fa-eye me-2"></i> View Brand</a></li>
+                </ul>
+              </div>
+            </li>
+            
+            <li class="mb-1">
+              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#sales-collapse" aria-expanded="false">
+                <i class="fas fa-shopping-cart me-2"></i> Sales  <i class="fas fa-caret-down"></i>
+              </button>
+              <div class="collapse" id="sales-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><a href="{% url 'sales'%}" class="link-dark rounded"><i class="fas fa-plus me-2"></i> Sales </a></li>
+                  <li><a href="{% url 'view_sales'%}" class="link-dark rounded"><i class="fas fa-eye me-2"></i> view sales</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="mb-1">
+              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#purchase-collapse" aria-expanded="false">
+                <i class="fas fa-box-open me-2"></i> Purchase <i class="fas fa-caret-down"></i>
+              </button>
+              <div class="collapse" id="purchase-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><a href="{% url 'purchase'%}" class="link-dark rounded"><i class="fas fa-plus me-2"></i> Purchase </a></li>
+                  <li><a href="{% url 'view_purchase'%}" class="link-dark rounded"><i class="fas fa-eye me-2"></i> view Purchase</a></li>
+                </ul>
+              </div>
+            </li>
+            {% if user.is_superuser %}
+            <li class="mb-1">
+                <a href="{% url 'monthly_sales_report_view'%}" class="text-decoration-none">
+                  <button class="btn btn-toggle align-items-center rounded home-btn" >
+                    <div class="d-flex justify-content-center align-items-center">
+                      <i class="fas fa-download me-2"></i>
+                      <span>Report</span>
+                    </div>
+                  </button>
+                </a>
+                <!-- Add collapse content if needed -->
+              </li>
+              
+            
+            {%endif%}
+            <hr>
+            <li class="mb-1">
+              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                <i class="fas fa-user me-2"></i> {{ user.username }} <i class="fas fa-caret-down"></i>
+              </button>
+              <div class="collapse" id="account-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  
+                  <li><a href="{% url 'user_profile'%}" class="link-dark rounded"><i class="fas fa-user-circle me-2"></i> Profile</a></li>
+                  {% if user.is_superuser %}
+                  <li><a href="{% url 'view_user'%}" class="link-dark rounded"><i class="fas fa-user-circle me-2"></i> Staff Info </a></li>
+                  <li><a href="{% url 'admin:index'%}" class="link-dark rounded"><i class="fas fa-user-circle me-2"></i> Additional Settings  </a></li>
+                  {%endif%}
+                  <li><a href="{% url 'logout'%}" class="link-dark rounded"><i class="fas fa-sign-out-alt me-2"></i> Log out</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+    </div>
+ 
+   
+
+  <div id="content">
+
+
+    <div class="rounded-box">
+      
+    
+      <!-- breadcrumbs  -->
+      <div class="row row-cols-1 row-cols-md-3 g-2 g-1">
+        
+        
+        <div class="col">
+          <div class="card text-bg-info mb-3 card-max-width">
+            <div class="card-body d-flex align-items-center justify-content-between">
+              <div>
+                <i class="fas fa-bullseye fa-4x mb-2 me-3"></i>
+                <h5 class="card-title fs-2">Brands </h5>
+              </div>
+              <div >
+                <h1 class="display-2">{{total_brands}}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+    
+        <div class="col">
+          <div class="card text-bg-info mb-3 card-max-width">
+            <div class="card-body d-flex align-items-center justify-content-between">
+              <div>
+                <i class="fas fa-cubes fa-4x mb-2 me-3"></i>
+    
+                <h5 class="card-title fs-2">Stock </h5>
+              </div>
+              <div >
+                <h1 class="display-2">{{ total_products }}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="col">
+          <div class="card text-bg-info mb-3 card-max-width">
+            <div class="card-body d-flex align-items-center justify-content-between">
+              <div>
+                <i class="fas fa-truck fa-4x mb-2 me-3"></i>
+                <h5 class="card-title fs-2">Supplier </h5>
+              </div>
+              <div >
+                <h1 class="display-2">{{total_suppliers}}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {% if user.is_superuser %}
+        
+        <div class="col">
+          <div class="card text-bg-info mb-3 card-max-width">
+            <div class="card-body d-flex align-items-center justify-content-between">
+              <div>
+                <i class="fas fa-shopping-cart fa-4x mb-2 me-3"></i>
+                <h5 class="card-title fs-3">Sales </h5>
+              </div>
+              <div >
+                <h1 class="display-2">{{total_sales}}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card text-bg-info mb-3 card-max-width">
+            <div class="card-body d-flex align-items-center justify-content-between">
+              <div>
+                <i class="fas fa-box-open fa-4x mb-2 me-3"></i>
+                <h5 class="card-title fs-3">Purchase </h5>
+              </div>
+              <div >
+                <h1 class="display-2">{{total_purchase}}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card text-bg-info mb-3 card-max-width">
+            <div class="card-body d-flex align-items-center justify-content-between">
+              <div>
+                <i class="fas fa-user fa-4x mb-2 me-3"></i>
+                <h5 class="card-title fs-3">Staff </h5>
+              </div>
+              <div >
+                <h1 class="display-2">{{user_count}}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        {%endif%}
+        <div class="Blue-rounded-box">
+          {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>{{ message }}</strong> .
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
+        {% block content %}
+        
+        
+        {% endblock  %}
+        </div>
+    
+      </div>
+      
+    </div>
+  </div>
+
+  
+  
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  background-color: #c9c9c9;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+
+.sidebar {
+  width: 200px;
+  min-height: 100vh;
+  background-color: #0d6efd !important;
+  color: rgb(0, 0, 0);
+  /* Set text color to black */
+  border-right: 1px solid #000;
+  /* Add a black border on the right side */
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 500px; /* Adjust the padding-top as needed */
+  z-index: 1;
+}
+
+
+.btn-toggle {
+  width: 100%;
+  text-align: left;
+  color: rgb(255, 255, 255);
+ /* Set text color to white */
+  text-shadow: 1px 1px 1px #000; /* Add a black stroke to the text */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.btn-toggle + .collapse {
+  margin-top: 0;
+}
+
+.btn-toggle-nav {
+  padding-left: 20px;
+}
+
+.btn-toggle-nav a {
+  display: block;
+  padding: 5px 0;
+ 
+  text-decoration: none;
+  color: white;
+  text-shadow: 1px 1px 1px #000;
+  transition: background-color 0.3s;
+}
+
+.btn-toggle-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Darker background color on hover */
+}
+
+/* Additional styles for the dropup menu items */
+.dropdown-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+#content {
+  margin-left: 200px;
+  padding: 15px;
+  transition: margin-left 0.5s;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.rounded-box {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(1, 17, 255, 0.1), 0 4px 8px rgba(38, 8, 209, 0.1); /* Add a drop shadow */
+  flex-grow: 1; /* Fill the remaining space in the flex container */
+
+}
+.Blue-rounded-box {
+  background-color: #0d6efd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(1, 17, 255, 0.1), 0 4px 8px rgba(38, 8, 209, 0.1); /* Add a drop shadow */
+  flex-grow: 1;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 2px solid #ccc; /* Add a border at the bottom for separation */
+}
+
+.logo img {
+  max-width: 110%; /* Adjust the maximum width as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin: 0 auto; /* Center the image horizontally */
+  display: block; /* Ensures margin auto works */
+}
+.main-content-title {
+margin-bottom: 20px; /* Adjust the margin bottom as needed */
+}
+
+.main-content-title h4 {
+color: #333; /* Set the desired text color */
+font-size: 24px; /* Set the desired font size */
+font-weight: bold; /* Set the desired font weight */
+margin: 0; /* Remove default margin to align with other elements */
+}
+.home-btn {
+  width: 100%; /* Make the button fill the container width */
+  text-align: center;
+  }
+  
+  
+  .home-btn span {
+  position: relative;
+  left: 25px;
+  top: 1;
+  }
+  
+  .home-btn i {
+  margin-right: 0.5rem; /* Add some margin between the icon and text if needed */
+  }
+
+  label.required:after {
+    content: "";
+    color: red;
+    display: none; /* Hide the asterisk */
+}
+.btn-white {
+  color: #fff;
+  background-color: #fff;
+  border-color: #fff;
+}
+
+/* Additional styling for hover and focus states if needed */
+.btn-white:hover,
+.btn-white:focus {
+  color: #000; /* Change the text color on hover/focus */
+  background-color: #fff; /* Change the background color on hover/focus */
+  border-color: #fff; /* Change the border color on hover/focus */
+}
+.small-box{
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 10px;
+  
+}
+.card-max-width {
+  max-width: 30rem; /* Set your desired max-width here */
+}

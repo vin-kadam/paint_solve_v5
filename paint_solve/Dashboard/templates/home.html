@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+<!-- Log on to codeastro.com for more projects -->
+{% load static %}
+
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="rounded-box">
+            <canvas id="barChart" width="400" height="400"></canvas>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="rounded-box">
+            <canvas id="pieChart" width="400" height="400"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Second Row with One Column for brandBarChart -->
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="rounded-box">
+            <canvas id="brandBarChart" width="800" height="400"></canvas>
+        </div>
+    </div>
+</div>
+{%if user.is_superuser %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="rounded-box">
+            <canvas id="salesBarChart" width="400" height="400"></canvas>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="rounded-box">
+            <canvas id="soldProductsByCategory" width="400" height="400"></canvas>
+        </div>
+    </div>
+</div>
+{%endif %}
+<script>
+    // Bar Chart
+    const ctx1 = document.getElementById('barChart').getContext('2d');
+    const barChart = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: [{% for category in category_counts %}"{{ category.category }}",{% endfor %}],
+            datasets: [{
+                label: 'Product Quantities',
+                data: [{% for category in category_counts %}{{ category.total }},{% endfor %}],
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                ],
+                borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+            title: {
+                display: true,
+                text: 'Product Quantities Chart',
+                font: {
+                    size: 16,
+                    weight: 'bold'
+                }
+            }
+        },
+        }
+    });
+
+    // Pie Chart
+    const ctx2 = document.getElementById('pieChart').getContext('2d');
+    const pieChart = new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            labels: [{% for data in stock_data %}"{{ data.0 }}",{% endfor %}],
+            datasets: [{
+                label: 'Stock Quantities',
+                data: [{% for data in stock_data %}{{ data.1 }},{% endfor %}],
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                ],
+                borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+            title: {
+                display: true,
+                text: 'Stock ',
+                font: {
+                    size: 16,
+                    weight: 'bold'
+                }
+            }
+        },
+        }
+    });
+    const ctx3 = document.getElementById('brandBarChart').getContext('2d');
+    const brandBarChart = new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: [{% for brand in brand_counts %}"{{ brand.name }}",{% endfor %}],
+            datasets: [{
+                label: 'Product Count by Brand',
+                data: [{% for brand in brand_counts %}{{ brand.total }},{% endfor %}],
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                    
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    // Add more colors if needed
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Product Count by Brand',
+                    font: {
+                        size: 16,
+                        weight: 'bold'
+                    }
+                }
+            },
+            // Additional options as needed
+        }
+    });
+
+    // Bar Chart for Sales Counts
+    const ctx4 = document.getElementById('salesBarChart').getContext('2d');
+    const salesBarChart = new Chart(ctx4, {
+        type: 'bar',
+        data: {
+            labels: [{% for product in sales_counts %}"{{ product.product.color_name }}",{% endfor %}],
+            datasets: [{
+                label: 'Sales Count by Product',
+                data: [{% for product in sales_counts %}{{ product.total }},{% endfor %}],
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                    
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    // Add more colors if needed
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Sales Count by Product',
+                    font: {
+                        size: 16,
+                        weight: 'bold'
+                    }
+                }
+            },
+            // Additional options as needed
+        }
+    });
+    fetch('{% url "sold_products_by_category" %}')
+    .then(response => response.json())
+    .then(data => {
+        const ctx3 = document.getElementById('soldProductsByCategory').getContext('2d');
+        const soldProductsByCategory = new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: data.categories,
+                datasets: [{
+                    label: 'Most Sold Products by Category',
+                    data: data.countss,
+                    backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        // Add more colors if needed
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                title: {
+                    display: true,
+                    text: 'Sales Count by Categories',
+                    font: {
+                        size: 16,
+                        weight: 'bold'
+                    }
+                }
+            },
+            }
+        });
+    });
+</script>
+
+{% endblock content %}

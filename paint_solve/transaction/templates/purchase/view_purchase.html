@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center text-blue fw-bold">Purchase List</h1>
+
+<div class="row">
+    <div class="col">
+        <div class="card card-body">
+            <table class="table table-striped table-hover table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col" class="text-center">Color Name</th>
+                        <th scope="col" class="text-center">Category</th>
+                        <th scope="col" class="text-center">Brand</th>
+                        <th scope="col" class="text-center">Color Code</th>
+                        <th scope="col" class="text-center">Quantity</th>
+                        <th scope="col" class="text-center">Price</th>
+                        <th scope="col" class="text-center">Purchase Date</th>
+                        <th scope="col" class="text-center">Purchase Time</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if purchases %}
+                        {% for purchase in purchases %}
+                            <tr>
+                                <td class="text-center">{{ purchase.product.color_name }}</td>
+                                <td class="text-center">{{ purchase.product.category }}</td>
+                                <td class="text-center">{{ purchase.product.brand }}</td>
+                                <td class="text-center">{{ purchase.product.color_code }}</td>
+                                <td class="text-center">{{ purchase.quantity }}</td>
+                                <td class="text-center">{{ purchase.price }}</td>
+                                <td class="text-center">{{ purchase.purchase_date }}</td>
+                                <td class="text-center">{{ purchase.purchase_time }}</td>
+                                
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+<div class="row mt-3 ">
+    <div class="col ">
+        <a class="btn btn-light" href="{% url 'purchase'  %}" role="button">Back To Purchase  </a>
+    </div>
+</div>
+{% endblock %}

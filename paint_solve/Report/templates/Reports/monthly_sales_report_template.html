@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monthly Sales Report</title>
+    <!-- Add any necessary styles or meta tags -->
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center mb-4">Monthly Sales Report</h2>
+
+        <p class="text-right">Generated on: {{ now|date:"Y-m-d H:i:s" }}</p>
+        <p class="text-right">Period: {{ start_date|date:"Y-m-d" }} to {{ end_date|date:"Y-m-d" }}</p>
+
+        <div class="mt-5">
+            <h3>Sales Data</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Total Sales</th>
+                        <th>Total Quantity Sold</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in products_data %}
+                        <tr>
+                            <td>{{ data.product_name }}</td>
+                            <td>${{ data.total_sales|floatformat:2 }}</td>
+                            <td>{{ data.total_quantity_sold }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-5">
+            <h3>Purchase Data</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Total Purchase</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for purchase_data in purchases_data %}
+                        <tr>
+                            <td>{{ purchase_data.product_name }}</td>
+                            <td>{{ purchase_data.category }}</td>
+                            <td>${{ purchase_data.total_purchase|floatformat:2 }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Add other sections as needed based on your PDF content -->
+    </div>
+</body>
+</html>

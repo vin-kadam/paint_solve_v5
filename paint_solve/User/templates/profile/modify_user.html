@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1 class="text-center text-blue fw-bold">Edit Profile</h1>
+  <form method="post" class="row g-3">
+    {% csrf_token %}
+    <div class="col-md-12">
+        <div class="mb-3">
+            <label for="id_first_name" class="form-label text-white fs-6">First Name:</label>
+            {{ form.first_name }}
+        </div>
+    
+   
+        <div class="mb-3">
+            <label for="id_last_name" class="form-label text-white fs-6">Last Name:</label>
+            {{ form.last_name }}
+        </div>
+    
+    
+        <div class="mb-3">
+            <label for="id_email" class="form-label text-white fs-6">Email:</label>
+            {{ form.email }}
+        </div>
+ 
+    
+        <div class="mb-3">
+            <label for="id_phone_number" class="form-label text-white fs-6">Phone Number:</label>
+            {{ form.phone_number }}
+        </div>
+    
+    
+        <div class="mb-3">
+            <label for="id_is_staff" class="form-label text-white fs-6">Is Staff:</label>
+            {{ form.is_staff }}
+       
+            <label for="id_is_superuser" class="form-label text-white fs-6">Is Superuser:</label>
+            {{ form.is_superuser }}
+        </div>
+    
+    <div class="col-12">
+        <button type="submit" class="btn btn-light">Update</button>
+        <a class="btn btn-primary" href="{% url 'view_user'  %}" role="button">Back to Users</a>
+
+    </div>
+</form>
+
+
+  
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1 class="text-center text-blue fw-bold"> Add Supplier</h1>
+    <form method="post" class="row g-3">
+        {% csrf_token %}
+        <div class="col-md-12">
+            <div class="mb-3">
+                <label for="id_supplier_name" class="form-label fs-6 text-white">Supplier Name:</label>
+                {{ form.supplier_name }}
+            </div>
+            <div class="mb-3">
+                <label for="id_supplier_phone_no" class="form-label fs-6 text-white">Phone Number:</label>
+                {{ form.supplier_phone_no }}
+            </div>
+            <div class="mb-3">
+                <label for="id_supplier_email" class="form-label fs-6 text-white">Email:</label>
+                {{ form.supplier_email }}
+            </div>
+            <div class="mb-3">
+                <label for="id_supplied_products" class="form-label fs-6 text-white">Supplied Products:</label>
+                 {{ form.supplied_products }}
+            <script>
+                   $(document).ready(function() {
+                  $('#id_supplied_products').select2();
+                     });
+            </script>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Add Supplier</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

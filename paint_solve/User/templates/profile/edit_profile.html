@@ -1,0 +1,16 @@
+<!-- edit_profile.html -->
+{% extends 'dashboard/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Edit User Profile{% endblock %}
+
+{% block content %}
+<h1 class="text-center text-blue fw-bold">Edit Profile</h1>
+   <form method="post" action="{% url 'edit_profile' user_to_edit.id %}">
+       {% csrf_token %}
+       {{ form|crispy }}
+       <button type="submit">Save Changes</button>
+   </form>
+   <p><a href="{% url 'user_profile' %}">Back to User Profile</a></p>
+{% endblock %}
+

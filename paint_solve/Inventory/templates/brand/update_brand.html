@@ -1,0 +1,32 @@
+
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1 class="text-center text-blue fw-bold">Update Brand</h1>
+  
+  
+<form method="post" class="row g-3" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="col-md-12">
+      <div class="mb-3">
+          <label for="{{ form.name.id_for_label }} "class="form-label text-white fs-6">Brand Name:</label>
+          {{ form.name }}
+      </div>
+      <div class="mb-3">
+          <label for="{{ form.description.id_for_label }}" class="form-label text-white fs-6">Description:</label>
+          {{ form.description }}
+      </div>
+      <div class="mb-3">
+          <label for="{{ form.logo.id_for_label }}" class="form-label text-white fs-6">Logo:</label>
+          {{ form.logo }}
+      </div>
+      
+      <div class="col-12">
+        
+          <button type="submit" class="btn btn-light">Update</button>
+      
+      </div>
+  </div>
+</form>
+{% endblock %}
+

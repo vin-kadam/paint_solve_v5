@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1 class="text-center text-blue fw-bold">Issue Stock</h1>
+  <form method="post" class="row g-3">
+    <div class="col-md-12">
+      {% if form.errors %}
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {% for field, errors in form.errors.items %}
+                  {% for error in errors %}
+                      {{ error }}
+                  {% endfor %}
+              {% endfor %}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+      {% endif %}
+    {% csrf_token %}
+    <div class="col-md-12">
+      <div class="mb-3">
+        <label for="id_product" class="col-form-label fs-5 text-white">Product:</label>
+        {{ form.product }}
+      </div>
+      <div class="mb-3">
+        <label for="id_customer_name" class="col-form-label fs-5 text-white">Customer Name:</label>
+        {{ form.customer_name }}
+      </div>
+      <div class="mb-3">
+        <label for="id_customer_phone_no" class="col-form-label fs-5 text-white">Customer Phone No:</label>
+        {{ form.customer_phone_no }}
+      </div>
+      <div class="mb-3">
+        <label for="id_customer_email" class="col-form-label fs-5 text-white">Customer Email:</label>
+        {{ form.customer_email }}
+      </div>
+      <div class="mb-3">
+        <label for="id_quantity" class="col-form-label fs-5 text-white">Quantity:</label>
+        {{ form.quantity }}
+      </div>
+      <div class="mb-3">
+        <label for="id_price" class="col-form-label fs-5 text-white">Price:</label>
+        {{ form.price }}
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-light">Sell</button>
+      </div>
+    </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,38 @@
+<!-- user_profile.html -->
+{% extends 'base.html' %}
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<h1 class="text-center text-blue fw-bold">User Profile info </h1>
+<div class="card">
+  
+  <div class="card-body">
+      <p class="card-text">
+          <strong>Username:</strong> {{ user.username }}
+      </p>
+      <p class="card-text">
+          <strong>Email:</strong> {{ user.email }}
+      </p>
+      <p class="card-text">
+          <strong>First Name:</strong> {{ user.first_name }} <br>
+          
+      </p>
+      <p class="card-text">
+        <strong>Last Name:</strong> {{ user.last_name }}
+        
+    </p>
+      {% if user.userprofile %}
+      <p class="card-text">
+          <strong>Phone Number:</strong> {{ user.userprofile.phone_number }}
+      </p>
+      {% endif %}
+      <a class="btn btn-info" href="{% url 'modify_user' user.id %}" role="button">Edit Profile</a>
+      <a class="btn btn-info" href="{% url 'view_user'  %}" role="button">Back To  List </a>
+  </div>
+</div>
+
+  
+{% endblock %}
+
+
+    
